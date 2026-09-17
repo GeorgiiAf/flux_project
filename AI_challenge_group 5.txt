@@ -1,0 +1,99 @@
+1. Core Goals & Objectives: What We Aim to Achieve
+Our primary objective is to develop an AI-powered automated vehicle compliance monitoring system for city authorities.
+The project aims to transform raw dashcam footage from public transport and other city-operated vehicles into actionable enforcement data.
+
+Problem We Are Solving
+Cities struggle to monitor:
+? vehicles with expired technical inspection,
+? illegal or blacklisted vehicles,
+? cars connected to criminal activity or unpaid penalties,
+? and violations occurring across the city in real time.
+
+Current processes are manual, inconsistent, and limited in coverage.
+
+Our Target Users
+? City traffic enforcement departments
+? Municipal police
+? Transport authorities
+? National police (for escalated alerts)
+
+Long-Term Vision
+To create a scalable, city-wide compliance AI platform that eventually integrates with:
+? live CCTV feeds
+? public transport fleets
+? police patrol cameras
+? traffic monitoring infrastructure
+and provides a real-time map of vehicle compliance, violations, and risks.
+
+Key Metrics of Success (KPI)
+? Detection accuracy of license plates (high-confidence OCR).
+? Latency: time from video frame ? alert sent.
+? Coverage: number of vehicles/areas monitored.
+? Reduction in manual checks needed by police.
+? Successful alerts verified by city authorities.
+
+2. Minimum Viable Product (MVP): Our First Step to Success
+The MVP focuses on solving the critical pain point:
+
+Automatically identifying non-compliant vehicles from dashcam video and notifying authorities.
+
+We will build a minimal, working pipeline in Google Colab, using: (Python?)
+? YOLO for vehicle detection
+? License Plate Detection Model
+? OCR (Plate Reading)
+? A rule-based check against a simple "watchlist" database
+The MVP will process a short recorded video, extract plate numbers with high confidence, check them against lists of non-compliant vehicles, and generate a simple violation report.
+
+Core User Problem for MVP
+City authorities need a scalable, automated way to find:
+? vehicles with expired inspection
+? wanted vehicles
+? stolen vehicles
+   ? blacklisted or illegal vehicles without relying on manual review. The MVP directly addresses this.
+
+
+
+3. MVP Key Features
+Feature 1 - Vehicle Detection (YOLO Model)
+What it does:
+Identifies every vehicle in the video frames using YOLO in Google Colab. User benefit:
+Provides a reliable visual pipeline to locate vehicles in real-world city footage.
+
+
+Feature 2 - License Plate Detection + OCR
+What it does:
+After finding a vehicle, the system detects the license plate region, crops it, and uses OCR to read the plate number.
+Includes a confidence threshold to ensure high accuracy and avoid false identifications. User benefit:
+Turns visual data into structured, readable information for automated checks.
+
+
+Feature 3 - Compliance Database Check
+What it does:
+Compares each detected plate number with a city-maintained list:
+? expired technical inspection
+? illegal registrations
+? stolen/blacklisted vehicles
+   ? "red list" targets User benefit:
+Automatically identifies vehicles of interest without human intervention.
+
+
+Feature 4 - Automated Notification Output
+What it does:
+For each matched violation, the system produces a structured record:
+? license plate number
+? GPS/time metadata (or frame timestamp)
+   ? violation category (reason for the match) This alert can be forwarded to:
+? municipal police
+? national police
+   ? traffic enforcement/ticketing authority User benefit:
+Gives enforcement teams actionable, verified intelligence.
+
+
+
+"Nice-to-Have" Features (Not in MVP)
+? Real-time video processing instead of recorded video
+? GPS integration from the bus/tram system
+? Integration with national vehicle registries
+? Automatic anonymization (face/plate blurring for compliant vehicles)
+? A full web dashboard with live monitoring
+? Behavior analysis (speeding, illegal parking, lane misuse)

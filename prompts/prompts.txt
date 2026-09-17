@@ -1,0 +1,223 @@
+# LLM Prompts Used During Development
+
+This file documents all LLM prompts used during the development of the Vehicle Compliance Monitor system.
+
+---
+
+## 1. Project Initialization and Requirements
+
+**Prompt:**
+"I have uploaded 2 text files based on which we should make a python/ whatever other technology needed relevant project. You must tell me step by step what to do. On my computer I have nothing installed related to the project eg no python or any relevant dependencies. You must add a readme that will explain in thorough detail what we will need to work with this project on any pc, like setting up a particular conda or docker environment. Please propose your solution to the task at hand"
+
+**Validation:**
+- Reviewed the AI Challenge requirements document
+- Analyzed the group's MVP goals document
+- Confirmed the solution addresses vehicle compliance monitoring with YOLO, OCR, and database checking
+
+---
+
+## 2. System Architecture Design
+
+**Prompt:**
+"Create a complete system architecture for an AI-powered vehicle compliance monitoring system that processes dashcam footage to detect vehicles, read license plates, check them against a watchlist database, and generate traffic analytics."
+
+**Validation:**
+- Designed modular pipeline architecture with 8 components
+- Verified each component has clear responsibilities and interfaces
+- Confirmed design meets all challenge requirements (object detection, time profiles, heatmaps, comparison)
+
+---
+
+## 3. Component Implementation - Video Processing
+
+**Prompt:**
+"Implement a VideoProcessor class that extracts frames from video files (MP4, AVI, MOV) at a configurable frame rate, preserves timestamp metadata, and handles corrupted frames gracefully."
+
+**Validation:**
+- Tested with sample videos to verify frame extraction
+- Confirmed timestamp accuracy and frame rate control
+- Validated error handling for corrupted/missing files
+
+---
+
+## 4. Component Implementation - Vehicle Detection
+
+**Prompt:**
+"Implement a VehicleDetector using YOLOv8 from Ultralytics that detects cars, trucks, buses, motorcycles, bicycles, and pedestrians with configurable confidence thresholds."
+
+**Validation:**
+- Verified YOLO model loads correctly
+- Tested detection accuracy on sample frames
+- Confirmed confidence filtering works as expected
+- Validated that all vehicle classes are detected
+
+---
+
+## 5. Component Implementation - License Plate Detection
+
+**Prompt:**
+"Implement a LicensePlateDetector that locates license plate regions within detected vehicles using a heuristic-based approach for MVP, with the ability to upgrade to a trained model later."
+
+**Validation:**
+- Tested plate region estimation on vehicle crops
+- Verified bounding boxes are within vehicle boundaries
+- Confirmed heuristic provides reasonable estimates for OCR
+
+---
+
+## 6. Component Implementation - OCR Engine
+
+**Prompt:**
+"Implement an OCREngine using EasyOCR that reads license plate text, normalizes it (uppercase, no spaces, alphanumeric only), and filters by confidence threshold."
+
+**Validation:**
+- Tested OCR accuracy on sample plate images
+- Verified normalization produces consistent format
+- Confirmed confidence filtering removes low-quality reads
+
+---
+
+## 7. Component Implementation - Compliance Checker
+
+**Prompt:**
+"Implement a ComplianceChecker that loads a CSV watchlist database, queries plates, supports hot-reloading, and returns violation information with categories (expired_inspection, stolen, blacklisted, wanted)."
+
+**Validation:**
+- Tested database loading and querying
+- Verified normalization ensures consistent matching
+- Confirmed hot-reload functionality works without restart
+
+---
+
+## 8. Component Implementation - Report Generator
+
+**Prompt:**
+"Implement a ReportGenerator that creates violation reports in CSV, JSON, and text formats, generates annotated videos with bounding boxes, and exports all outputs to a specified directory."
+
+**Validation:**
+- Verified CSV/JSON exports are valid and parseable
+- Tested annotated video generation with bounding boxes
+- Confirmed all output files are created correctly
+
+---
+
+## 9. Component Implementation - Analytics Engine
+
+**Prompt:**
+"Implement an AnalyticsEngine that computes object counts by class, generates time profiles (5-second intervals), creates spatial heatmaps, produces comparative statistics between videos, and exports visualizations as PNG files."
+
+**Validation:**
+- Verified object count accuracy
+- Tested time profile aggregation (sum equals total)
+- Confirmed heatmap dimensions match video resolution
+- Validated comparison statistics for multiple videos
+
+---
+
+## 10. Pipeline Orchestration
+
+**Prompt:**
+"Implement a Pipeline orchestrator that coordinates all components to process videos end-to-end: extract frames, detect vehicles, detect plates, run OCR, check compliance, generate reports, create analytics, and handle batch processing."
+
+**Validation:**
+- Tested complete pipeline on sample videos
+- Verified all components integrate correctly
+- Confirmed progress tracking and error handling
+- Validated batch processing with multiple videos
+
+---
+
+## 11. Command-Line Interface
+
+**Prompt:**
+"Create a command-line interface with argparse that accepts video paths, output directory, database path, confidence thresholds, FPS settings, and optional flags for analytics and verbose logging."
+
+**Validation:**
+- Tested all command-line arguments
+- Verified input validation (file existence, threshold ranges)
+- Confirmed help message displays correctly
+
+---
+
+## 12. Google Colab Notebook
+
+**Prompt:**
+"Create a Jupyter notebook for Google Colab that installs dependencies, checks GPU availability, allows file uploads, runs the complete pipeline, displays results inline, and provides downloadable outputs."
+
+**Validation:**
+- Verified notebook structure and cell organization
+- Confirmed dependency installation commands are correct
+- Tested file upload and download functionality
+
+---
+
+## 13. Documentation and Setup
+
+**Prompt:**
+"Create a comprehensive README with step-by-step setup tutorials for three installation methods: Docker, Conda, and manual pip installation. Include prerequisites, troubleshooting, usage examples, and privacy considerations."
+
+**Validation:**
+- Reviewed installation instructions for accuracy
+- Verified commands work on Windows/macOS/Linux
+- Confirmed troubleshooting section covers common issues
+
+---
+
+## 14. Bug Fixes and Improvements
+
+**Prompt 1:**
+"Trams are being detected as buses. Explain why this happens and whether it's acceptable for the challenge."
+
+**Validation:**
+- Confirmed YOLO's COCO dataset doesn't include 'tram' class
+- Explained visual similarity between trams and buses
+- Documented as acceptable limitation with explanation for presentation
+
+**Prompt 2:**
+"Pedestrians are not being detected. Fix the VehicleDetector to include 'person' class."
+
+**Validation:**
+- Added 'person' to VEHICLE_CLASS_NAMES
+- Updated live demo to show pedestrians in different color
+- Tested pedestrian detection on sample videos
+
+---
+
+## 15. Live Visualization Demo
+
+**Prompt:**
+"Create a live demo script that shows video processing in real-time with bounding boxes, labels, and statistics overlay, with keyboard controls for pause/resume and frame saving."
+
+**Validation:**
+- Tested real-time visualization with OpenCV
+- Verified bounding boxes and labels display correctly
+- Confirmed keyboard controls work as expected
+
+---
+
+## Summary of LLM Usage
+
+**How LLMs Were Used:**
+1. **System Design** - Architecture planning and component design
+2. **Code Generation** - Implementation of all 9 core components
+3. **Documentation** - README, setup guides, and code comments
+4. **Debugging** - Identifying and fixing issues (trams, pedestrians)
+5. **Testing** - Creating test scripts and validation approaches
+
+**Validation Approach:**
+- All generated code was tested with actual video files
+- Components were validated individually before integration
+- End-to-end pipeline tested with challenge videos
+- Outputs verified against challenge requirements
+
+**Key Benefits:**
+- Rapid prototyping of complete system
+- Consistent code style and documentation
+- Comprehensive error handling
+- Well-structured modular architecture
+
+---
+
+**Total Development Time:** ~4 hours with LLM assistance
+**Lines of Code Generated:** ~2,500+ lines
+**Components Created:** 9 core components + CLI + notebook + documentation

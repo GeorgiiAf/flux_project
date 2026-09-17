@@ -1,0 +1,79 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual environments
+venv/
+env/
+ENV/
+.venv
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+.hypothesis/
+
+# Models (large files)
+models/*.pt
+models/*.pth
+models/*.onnx
+
+# Data - Don't upload videos (too large)
+data/videos/*.mp4
+data/videos/*.avi
+data/videos/*.mov
+
+# Outputs - Don't upload generated files
+outputs/
+figures/*.png
+figures/*.jpg
+
+# Video files anywhere
+*.mp4
+*.avi
+*.mov
+
+# Virtual environment
+venv/
+env/
+
+# Logs
+*.log
+logs/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Temporary files
+*.tmp
+*.bak

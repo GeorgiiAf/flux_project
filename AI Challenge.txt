@@ -1,0 +1,73 @@
+AI Traffic Insights Challenge - Team Brief
+
+Role & Story
+You're a startup offering dashcam analytics to city authorities. Your mission: turn raw video into actionable insights for safety and traffic management.
+You will receive two short videos of Tallinn city:
+
+* Morning / low-light clip
+* Daytime clip
+
+Use AI in any form (LLMs + ML/CV) to analyze them, extract as much useful information as you can, and pitch your service.
+
+
+Team Setup
+* Team name: invent a company name (logo optional).
+* Team size: 4-6 students.
+* Tools: Your choice. Hints: Google Colab + YOLO (or any detector), optional tracker (ByteTrack/SORT), Python. LLMs are encouraged for coding help, ideas, and reporting.
+
+
+What to Deliver (presentation + package)
+1) 5-7 minute presentation
+
+Explain clearly:
+
+1. What you attempted & why (your product idea, user value for a city).
+
+2. Process & pipeline (thinking steps, models, prompts, metrics).
+3. Results & insights (figures/plots/short annotated clips).
+4. Novelty (what AI enabled that's new or better than status quo).
+5. What was easy vs. challenging with AI/LLMs/ML in practice.
+6. One home-country application (where would your approach be useful?).
+7. Risks & ethics (privacy, fairness, false positives; mitigation ideas).
+
+2) Hand-in package (zip or repo)
+
+* README.md - how to run your code (Colab link with steps), dependencies, brief summary.
+* notebooks/ or src/ - source code used.
+* prompts/ - a simple text file of your LLM prompts + a 1-3 sentence note on how you validated outputs.
+* figures/ - plots, screenshots, short annotated clips (=20-30 s each).
+* slides/ - your presentation (PDF or PPTX).
+* (Optional) data/ - small derived CSVs (detections, tracks, metrics).
+
+
+Minimum Requirements (baseline)
+From each video:
+
+* Object detection with counts per class (cars, trucks/buses, pedestrians, cyclists, etc.).
+* Time profile (objects per second or per 5 s).
+* Spatial pattern (heatmap of detection centers or occupancy by region).
+* At least one deeper metric of your choice, e.g.:
+o Line crossings ? flow / headways
+o Queue length over time in a defined ROI
+o Dwell time (stopped vs. moving)
+o Pedestrian exposure in carriageway
+o Traffic sign crops (stop/traffic light/speed sign)
+         o Simple speed estimate (pixel?meter via lane-width assumption) Compare morning vs. daytime (what differs and why it matters for a city).
+
+
+Stretch Ideas (pick any)
+* Tracking with IDs ? trajectories, dwell times, conflict hotspots.
+* Rough speed distributions (lane-width calibration).
+* TTC proxy (time-to-collision) between vehicles & pedestrians.
+* Region-aware insights (lanes, crosswalk, curb/parking) drawn as polygons.
+* OCR on sign crops (e.g., read speed limits).
+* Anomaly moments (occluded/low-confidence frames) and how you handle them.
+* Auto-report draft with an LLM ? then human-edited.
+
+
+How to Use LLMs (expected)
+* Coding helper: request small functions (CSV aggregation, line-cross detection, ROI tests, plotting) and explain the code in comments.
+* Design assistant: ask for metric ideas + validation checks.
+* Writing aid: draft a short executive summary-then verify and edit.
+
+Include all prompts in your hand-in (keep them concise).
