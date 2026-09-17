@@ -637,7 +637,6 @@ This project is for educational purposes as part of the AI Traffic Insights Chal
 
 - **Challenge**: AI Traffic Insights Challenge - Tallinn City Videos
 - **Models**: Ultralytics YOLOv8, EasyOCR
-- **Team**: [Your Team Name]
 
 ---
 
